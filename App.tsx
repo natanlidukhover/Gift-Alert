@@ -1,17 +1,47 @@
-import 'react-native-gesture-handler';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from './src/screens/HomeScreen';
+import React, { useState } from "react";
+import { View, StyleSheet, Text } from "react-native";
 
-const Stack = createStackNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator 
-        screenOptions={{headerStyle: {backgroundColor: '#7b199d'}, headerTintColor: '#fad157'}} initialRouteName="Home">
-        <Stack.Screen name="Gift Alert" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+const ViewStyleProps = () => {
+    const [isHome, setIsHome] = useState(true);
+    return (
+      <View style={styles.container}>
+        <View style={styles.top} />
+        <View style={styles.middle} />
+        <Text>
+        This is 
+      </Text>
+        <View style={styles.bottom} />
+      </View>
+    );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    padding: 20,
+    margin: 10,
+  },
+  top: {
+    flex: 0.3,
+    backgroundColor: "grey",
+    borderWidth: 5,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  middle: {
+    flex: 0.3,
+    backgroundColor: "beige",
+    borderWidth: 5,
+  },
+  bottom: {
+    flex: 0.3,
+    backgroundColor: "pink",
+    borderWidth: 5,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+});
+
+export default ViewStyleProps;
