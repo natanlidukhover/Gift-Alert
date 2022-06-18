@@ -1,24 +1,35 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Button, Alert} from "react-native";
+import { View, StyleSheet, Text, Button, Alert, Image} from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const HomePage = () => {
   return (
     <View style={styles.baseContainer}>
+
       <View style={styles.topContainer}>
         <Text style={styles.giftAlertText}>Gift Alert</Text>
         <Text 
-          style={styles.topButton}
-          onPress={() => Alert.alert('Top pressed')}
-          >Top</Text>
+          style={styles.textButton}
+          onPress={() => Alert.alert('My Profile pressed')}
+          >My Profile</Text>
         <Text 
-          style={styles.middleButton}
-          onPress={() => Alert.alert('Middle pressed')}
-        >Middle</Text>
+          style={styles.textButton}
+          onPress={() => Alert.alert('Add New Giftee pressed')}
+        >Add New Giftee</Text>
        <Text 
-          style={styles.topButton}
-          onPress={() => Alert.alert('Bottom pressed')}
-        >Bottom</Text>
+          style={styles.textButton}
+          onPress={() => Alert.alert('View Existing Giftees pressed')}
+        >View Existing Giftee</Text>
       </View>
+
+      <View style={styles.bottomContainer}> 
+        <Text style={styles.giftAlertText}>Get Giftin</Text>
+        <Image 
+        source={require('./assets/present.png')}
+        style = {styles.image}/>
+        
+      </View>
+
     </View>
     
     
@@ -40,14 +51,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     padding: 20,
-    marginBottom: 400
+    //marginBottom: 400
   },
 
   bottomContainer: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-between",
-    padding: 20,
+    marginBottom:30
   },
 
 
@@ -57,28 +68,29 @@ const styles = StyleSheet.create({
     color: "#FAC577",
     fontSize: 48,
     fontFamily:"Avenir-BlackOblique",
-
   },
-  topButton: {
+
+  getGiftinText: {
+    textAlign: 'center',
+    color: "#FAC577",
+    fontSize: 48,
+    fontFamily:"Avenir-BlackOblique",
+  },
+
+  image:{
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+
+
+  textButton: {
     flex: 0.3,
     backgroundColor: "#FAC577",
     borderWidth: 1,
     margin:10,
     textAlign: "center",
-  },
-  middleButton: {
-    flex: 0.3,
-    backgroundColor: "#FAC577",
-    borderWidth: 1,
-    margin:10,
-    textAlign: "center"
-  },
-  bottomButton: {
-    flex: 0.3,
-    backgroundColor: "#FAC577",
-    borderWidth: 1,
-    margin:10,
-    textAlign: "center"
+    fontSize: 20,
+    fontFamily:"Avenir-BlackOblique",
   },
 
 });
