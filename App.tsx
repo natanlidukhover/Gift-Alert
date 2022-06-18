@@ -1,47 +1,87 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Button, Alert} from "react-native";
 
-const ViewStyleProps = () => {
-    const [isHome, setIsHome] = useState(true);
-    return (
-      <View style={styles.container}>
-        <View style={styles.top} />
-        <View style={styles.middle} />
-        <Text>
-        This is 
-      </Text>
-        <View style={styles.bottom} />
+const HomePage = () => {
+  return (
+    <View style={styles.baseContainer}>
+      <View style={styles.topContainer}>
+        <Text style={styles.giftAlertText}>Gift Alert</Text>
+        <Text 
+          style={styles.topButton}
+          onPress={() => Alert.alert('Top pressed')}
+          >Top</Text>
+        <Text 
+          style={styles.middleButton}
+          onPress={() => Alert.alert('Middle pressed')}
+        >Middle</Text>
+       <Text 
+          style={styles.topButton}
+          onPress={() => Alert.alert('Bottom pressed')}
+        >Bottom</Text>
       </View>
-    );
+    </View>
+    
+    
+
+  );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
+
+  baseContainer: {
     flex: 1,
+    flexDirection: "column",
     justifyContent: "space-between",
-    backgroundColor: "#fff",
+    backgroundColor: "#663399",
+  },
+  topContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
     padding: 20,
-    margin: 10,
+    marginBottom: 400
   },
-  top: {
+
+  bottomContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: 20,
+  },
+
+
+  giftAlertText: {
+    marginTop: 80,
+    textAlign: 'center',
+    color: "#FAC577",
+    fontSize: 48,
+    fontFamily:"Avenir-BlackOblique",
+
+  },
+  topButton: {
     flex: 0.3,
-    backgroundColor: "grey",
-    borderWidth: 5,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    backgroundColor: "#FAC577",
+    borderWidth: 1,
+    margin:10,
+    textAlign: "center",
   },
-  middle: {
+  middleButton: {
     flex: 0.3,
-    backgroundColor: "beige",
-    borderWidth: 5,
+    backgroundColor: "#FAC577",
+    borderWidth: 1,
+    margin:10,
+    textAlign: "center"
   },
-  bottom: {
+  bottomButton: {
     flex: 0.3,
-    backgroundColor: "pink",
-    borderWidth: 5,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    backgroundColor: "#FAC577",
+    borderWidth: 1,
+    margin:10,
+    textAlign: "center"
   },
+
 });
 
-export default ViewStyleProps;
+
+export default HomePage;
