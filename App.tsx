@@ -8,22 +8,29 @@ const HomePage = () => {
 
       <View style={styles.topContainer}>
         <Text style={styles.giftAlertText}>Gift Alert</Text>
-        <Text 
-          style={styles.textButton}
-          onPress={() => Alert.alert('My Profile pressed')}
-          >My Profile</Text>
-        <Text 
-          style={styles.textButton}
-          onPress={() => Alert.alert('Add New Giftee pressed')}
-        >Add New Giftee</Text>
-       <Text 
-          style={styles.textButton}
-          onPress={() => Alert.alert('View Existing Giftees pressed')}
-        >View Existing Giftee</Text>
+        <View style={styles.roundedBorder}>
+          <Text 
+            style={styles.innerTextStyle}
+            onPress={() => Alert.alert('My Profile pressed')}
+            >My Profile</Text>
+        </View>
+        <View style={styles.roundedBorder}>
+          <Text 
+            style={styles.innerTextStyle}
+            onPress={() => Alert.alert('Add New Giftee pressed')}
+            >Add New Giftee</Text>
+        </View>
+        <View style={styles.roundedBorder}>
+          <Text 
+            style={styles.innerTextStyle}
+            onPress={() => Alert.alert('View Existing Giftee pressed')}
+            >View Existing Giftee</Text>
+        </View>
+
       </View>
 
       <View style={styles.bottomContainer}> 
-        <Text style={styles.giftAlertText}>Get Giftin</Text>
+        <Text style={styles.giftAlertText}>Gift Up</Text>
         <Image 
         source={require('./assets/present.png')}
         style = {styles.image}/>
@@ -92,6 +99,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily:"Avenir-BlackOblique",
   },
+
+  roundedBorder:{
+      margin:10,
+      backgroundColor: "#FAC577",
+      borderWidth: 1, 
+      borderRadius: 10,
+      padding: 5,
+  },
+
+  innerTextStyle:{
+      textAlign: "center",
+      fontSize: 20,
+      fontFamily:"Avenir-BlackOblique",
+  }
+ 
 
 });
 
