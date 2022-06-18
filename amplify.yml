@@ -1,0 +1,27 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+        - nvm use 16
+        - npm install --silent --global expo-cli
+        - |-
+          if [ -f yarn.lock ]; then
+           yarn
+          elif [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+           npm ci
+          else
+           npm install
+          fi
+    build:
+      commands:
+        - 'expo build:web'
+  artifacts:
+    baseDirectory: web-build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - $(npm root --global)/**/*
