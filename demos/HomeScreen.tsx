@@ -34,7 +34,7 @@ const HomePage = () => {
       <View style={styles.bottomContainer}> 
         <Text style={styles.giftAlertText}>Gift Up</Text>
         <Image 
-        source={require('./assets/present.png')}
+        source={require('../assets/present.png')}
         style = {styles.image}/>
         
       </View>
