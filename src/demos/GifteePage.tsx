@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, StatusBar, View, Alert } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { return_home } from '../redux/actions/countAction';
 
 
 const App = () => {
@@ -21,11 +23,22 @@ const App = () => {
 }
 
 const Giftee = () => {
+
+  const dispatch = useDispatch();
+ 
+    const count = useSelector((store) => store.count.count);
+ 
+  const handleReturn_Home = () => {
+    dispatch(return_home());
+  };
+
+
+
   return (
     <View style={styles.roundedBorder}>
           <Text 
             style={styles.innerTextStyle}
-            onPress={() => Alert.alert('Friend Profile')}
+            onPress= {handleReturn_Home}
             >Giftee</Text>
     </View>
   );

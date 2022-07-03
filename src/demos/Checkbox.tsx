@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useState } from "react";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import {
   SafeAreaView,
@@ -12,6 +11,9 @@ import {
 } from "react-native";
 
 import RNBounceable from "@freakycoder/react-native-bounceable";
+
+import { useSelector, useDispatch } from 'react-redux';
+import { search_gifts, giftees, third } from '../redux/actions/countAction';
 
 const App = () => {
   let bouncyCheckboxRef: BouncyCheckbox | null = null;
@@ -32,6 +34,8 @@ const App = () => {
 };
 
 const Checkbox = () => {
+
+
   let bouncyCheckboxRef: BouncyCheckbox | null = null;
   const [checkboxState, setCheckboxState] = React.useState(false);
   return (

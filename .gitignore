@@ -11,16 +11,20 @@ npm-debug.*
 web-build/
 .vscode/
 
+
+# macOS
+.DS_Store
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/logs
 amplify/mock-data
 amplify/backend/amplify-meta.json
-amplify/backend/awscloudformation
 amplify/backend/.temp
-amplify/auth
 build/
+dist/
+node_modules/
 aws-exports.js
 awsconfiguration.json
 amplifyconfiguration.json
@@ -29,7 +33,5 @@ amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
+**.sample
 #amplify-do-not-edit-end
-
-# macOS
-.DS_Store
