@@ -21,6 +21,7 @@ const initialState = {
           count: state.count + 10,
         };
 
+      // this is actually only return home for search gifts rn-- change to always make it 0
       case 'Return_Home':
         return {
           ...state,
