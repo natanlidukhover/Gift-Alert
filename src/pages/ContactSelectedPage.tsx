@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, View} from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import BottomNav from '../components/BottomNav';
 import TopBar from '../components/TopBarHomePage';
 import Checkbox from '../components/Checkbox';

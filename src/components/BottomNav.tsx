@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import {contacts, home, settings } from '../redux/actions/countAction';
+import { contacts, home, settings } from '../redux/actions/countAction';
 
 
  

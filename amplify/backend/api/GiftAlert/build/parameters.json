@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "GiftAlert",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-amplify41dd16e3a0284-staging-192948-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/7e4f5e5613fafb663467f9e56fde93a452f701c6"
+}

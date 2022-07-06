@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import {SafeAreaView,StyleSheet,StatusBar,ScrollView} from "react-native";
+import { SafeAreaView, StyleSheet, StatusBar, ScrollView } from "react-native";
 
 
 const App = () => {

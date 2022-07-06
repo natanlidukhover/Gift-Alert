@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert,Image } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { cart} from '../redux/actions/countAction';
+import { cart } from '../redux/actions/countAction';
 
- 
+
 export default function TopBar() {
   const dispatch = useDispatch();
  
@@ -12,7 +12,6 @@ export default function TopBar() {
   const handleCart = () => {
       dispatch(cart());
   };
-
 
   return (    
     <View style={{height: 100, backgroundColor: 'powderblue', flexDirection: 'row', flex:1}}>   
@@ -29,9 +28,7 @@ export default function TopBar() {
   );
 }
 
-
 const styles = StyleSheet.create({
-
   RecommendationsForText: {
     marginTop:40,
     textAlign: 'center',
@@ -39,7 +36,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily:"Avenir-BlackOblique",
   },
- 
   image:{
     marginTop:50,
     flex:0.6,
@@ -47,7 +43,4 @@ const styles = StyleSheet.create({
     height: undefined,
     resizeMode: 'contain'
   },
-
-
-  
 });

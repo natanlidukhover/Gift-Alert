@@ -1,0 +1,424 @@
+
+type Product @aws_iam @aws_api_key {
+  id: ID!
+  name: String!
+  description: String
+  image: String!
+  url: String!
+  price: Float
+  elo: Int!
+  users(filter: ModelUserProductFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserProductConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Address @aws_iam @aws_api_key {
+  id: ID!
+  address_lines: [String!]!
+  city: String!
+  state: String!
+  country: String!
+  postal_code: String!
+  user_id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type User @aws_iam @aws_api_key {
+  id: ID!
+  first_name: String!
+  last_nam: String!
+  email: String!
+  phone_number: String
+  birthday: AWSDate!
+  preferences: AWSJSON!
+  addresses(filter: ModelAddressFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelAddressConnection
+  self_entry: Boolean!
+  contacts: [ID!]
+  likes(filter: ModelUserProductFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserProductConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type UserProduct @aws_iam @aws_api_key {
+  id: ID!
+  productID: ID!
+  userID: ID!
+  product: Product!
+  user: User!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelProductConnection @aws_api_key @aws_iam {
+  items: [Product]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelProductFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  description: ModelStringInput
+  image: ModelStringInput
+  url: ModelStringInput
+  price: ModelFloatInput
+  elo: ModelIntInput
+  and: [ModelProductFilterInput]
+  or: [ModelProductFilterInput]
+  not: ModelProductFilterInput
+}
+
+type Query {
+  getProduct(id: ID!): Product @aws_api_key @aws_iam
+  listProducts(filter: ModelProductFilterInput, limit: Int, nextToken: String): ModelProductConnection @aws_api_key @aws_iam
+  syncProducts(filter: ModelProductFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelProductConnection @aws_api_key @aws_iam
+  getAddress(id: ID!): Address @aws_api_key @aws_iam
+  listAddresses(filter: ModelAddressFilterInput, limit: Int, nextToken: String): ModelAddressConnection @aws_api_key @aws_iam
+  syncAddresses(filter: ModelAddressFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAddressConnection @aws_api_key @aws_iam
+  getUser(id: ID!): User @aws_api_key @aws_iam
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection @aws_api_key @aws_iam
+  syncUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserConnection @aws_api_key @aws_iam
+  getUserProduct(id: ID!): UserProduct @aws_api_key @aws_iam
+  listUserProducts(filter: ModelUserProductFilterInput, limit: Int, nextToken: String): ModelUserProductConnection @aws_api_key @aws_iam
+  syncUserProducts(filter: ModelUserProductFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserProductConnection @aws_api_key @aws_iam
+}
+
+input ModelProductConditionInput {
+  name: ModelStringInput
+  description: ModelStringInput
+  image: ModelStringInput
+  url: ModelStringInput
+  price: ModelFloatInput
+  elo: ModelIntInput
+  and: [ModelProductConditionInput]
+  or: [ModelProductConditionInput]
+  not: ModelProductConditionInput
+}
+
+input CreateProductInput {
+  id: ID
+  name: String!
+  description: String
+  image: String!
+  url: String!
+  price: Float
+  elo: Int!
+  _version: Int
+}
+
+input UpdateProductInput {
+  id: ID!
+  name: String
+  description: String
+  image: String
+  url: String
+  price: Float
+  elo: Int
+  _version: Int
+}
+
+input DeleteProductInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!, condition: ModelProductConditionInput): Product @aws_api_key @aws_iam
+  updateProduct(input: UpdateProductInput!, condition: ModelProductConditionInput): Product @aws_api_key @aws_iam
+  deleteProduct(input: DeleteProductInput!, condition: ModelProductConditionInput): Product @aws_api_key @aws_iam
+  createAddress(input: CreateAddressInput!, condition: ModelAddressConditionInput): Address @aws_api_key @aws_iam
+  updateAddress(input: UpdateAddressInput!, condition: ModelAddressConditionInput): Address @aws_api_key @aws_iam
+  deleteAddress(input: DeleteAddressInput!, condition: ModelAddressConditionInput): Address @aws_api_key @aws_iam
+  createUser(input: CreateUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  updateUser(input: UpdateUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  deleteUser(input: DeleteUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  createUserProduct(input: CreateUserProductInput!, condition: ModelUserProductConditionInput): UserProduct @aws_api_key @aws_iam
+  updateUserProduct(input: UpdateUserProductInput!, condition: ModelUserProductConditionInput): UserProduct @aws_api_key @aws_iam
+  deleteUserProduct(input: DeleteUserProductInput!, condition: ModelUserProductConditionInput): UserProduct @aws_api_key @aws_iam
+}
+
+type Subscription {
+  onCreateProduct: Product @aws_subscribe(mutations: ["createProduct"]) @aws_api_key @aws_iam
+  onUpdateProduct: Product @aws_subscribe(mutations: ["updateProduct"]) @aws_api_key @aws_iam
+  onDeleteProduct: Product @aws_subscribe(mutations: ["deleteProduct"]) @aws_api_key @aws_iam
+  onCreateAddress: Address @aws_subscribe(mutations: ["createAddress"]) @aws_api_key @aws_iam
+  onUpdateAddress: Address @aws_subscribe(mutations: ["updateAddress"]) @aws_api_key @aws_iam
+  onDeleteAddress: Address @aws_subscribe(mutations: ["deleteAddress"]) @aws_api_key @aws_iam
+  onCreateUser: User @aws_subscribe(mutations: ["createUser"]) @aws_api_key @aws_iam
+  onUpdateUser: User @aws_subscribe(mutations: ["updateUser"]) @aws_api_key @aws_iam
+  onDeleteUser: User @aws_subscribe(mutations: ["deleteUser"]) @aws_api_key @aws_iam
+  onCreateUserProduct: UserProduct @aws_subscribe(mutations: ["createUserProduct"]) @aws_api_key @aws_iam
+  onUpdateUserProduct: UserProduct @aws_subscribe(mutations: ["updateUserProduct"]) @aws_api_key @aws_iam
+  onDeleteUserProduct: UserProduct @aws_subscribe(mutations: ["deleteUserProduct"]) @aws_api_key @aws_iam
+}
+
+type ModelAddressConnection @aws_api_key @aws_iam {
+  items: [Address]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelAddressFilterInput {
+  id: ModelIDInput
+  address_lines: ModelStringInput
+  city: ModelStringInput
+  state: ModelStringInput
+  country: ModelStringInput
+  postal_code: ModelStringInput
+  user_id: ModelIDInput
+  and: [ModelAddressFilterInput]
+  or: [ModelAddressFilterInput]
+  not: ModelAddressFilterInput
+}
+
+input ModelAddressConditionInput {
+  address_lines: ModelStringInput
+  city: ModelStringInput
+  state: ModelStringInput
+  country: ModelStringInput
+  postal_code: ModelStringInput
+  user_id: ModelIDInput
+  and: [ModelAddressConditionInput]
+  or: [ModelAddressConditionInput]
+  not: ModelAddressConditionInput
+}
+
+input CreateAddressInput {
+  id: ID
+  address_lines: [String!]!
+  city: String!
+  state: String!
+  country: String!
+  postal_code: String!
+  user_id: ID!
+  _version: Int
+}
+
+input UpdateAddressInput {
+  id: ID!
+  address_lines: [String!]
+  city: String
+  state: String
+  country: String
+  postal_code: String
+  user_id: ID
+  _version: Int
+}
+
+input DeleteAddressInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelUserConnection @aws_api_key @aws_iam {
+  items: [User]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelUserFilterInput {
+  id: ModelIDInput
+  first_name: ModelStringInput
+  last_nam: ModelStringInput
+  email: ModelStringInput
+  phone_number: ModelStringInput
+  birthday: ModelStringInput
+  preferences: ModelStringInput
+  self_entry: ModelBooleanInput
+  contacts: ModelIDInput
+  and: [ModelUserFilterInput]
+  or: [ModelUserFilterInput]
+  not: ModelUserFilterInput
+}
+
+input ModelUserConditionInput {
+  first_name: ModelStringInput
+  last_nam: ModelStringInput
+  email: ModelStringInput
+  phone_number: ModelStringInput
+  birthday: ModelStringInput
+  preferences: ModelStringInput
+  self_entry: ModelBooleanInput
+  contacts: ModelIDInput
+  and: [ModelUserConditionInput]
+  or: [ModelUserConditionInput]
+  not: ModelUserConditionInput
+}
+
+input CreateUserInput {
+  id: ID
+  first_name: String!
+  last_nam: String!
+  email: String!
+  phone_number: String
+  birthday: AWSDate!
+  preferences: AWSJSON!
+  self_entry: Boolean!
+  contacts: [ID!]
+  _version: Int
+}
+
+input UpdateUserInput {
+  id: ID!
+  first_name: String
+  last_nam: String
+  email: String
+  phone_number: String
+  birthday: AWSDate
+  preferences: AWSJSON
+  self_entry: Boolean
+  contacts: [ID!]
+  _version: Int
+}
+
+input DeleteUserInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelUserProductConnection @aws_iam @aws_api_key {
+  items: [UserProduct]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelUserProductFilterInput {
+  id: ModelIDInput
+  productID: ModelIDInput
+  userID: ModelIDInput
+  and: [ModelUserProductFilterInput]
+  or: [ModelUserProductFilterInput]
+  not: ModelUserProductFilterInput
+}
+
+input ModelUserProductConditionInput {
+  productID: ModelIDInput
+  userID: ModelIDInput
+  and: [ModelUserProductConditionInput]
+  or: [ModelUserProductConditionInput]
+  not: ModelUserProductConditionInput
+}
+
+input CreateUserProductInput {
+  id: ID
+  productID: ID!
+  userID: ID!
+  _version: Int
+}
+
+input UpdateUserProductInput {
+  id: ID!
+  productID: ID
+  userID: ID
+  _version: Int
+}
+
+input DeleteUserProductInput {
+  id: ID!
+  _version: Int
+}
+

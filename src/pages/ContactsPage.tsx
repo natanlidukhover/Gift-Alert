@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import {contact_selected} from '../redux/actions/countAction';
+import { contact_selected } from '../redux/actions/countAction';
 import BottomNav from '../components/BottomNav';
 import TopBar from '../components/TopBarHomePage';
 
