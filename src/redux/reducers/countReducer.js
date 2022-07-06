@@ -4,29 +4,40 @@ const initialState = {
    
   export default (state = initialState, action) => {
     switch (action.type) {
-      case 'Search_Gifts':
+      
+      case 'Contacts':
         return {
           ...state,
-          count: state.count + 1,
-        };
-      case 'Giftees':
-        return {
-          ...state,
-          count: state.count + 5,
-        };
+          count: 25,
+        }; 
+      
+      
 
-      case 'Third':
+      case 'Settings':
         return {
           ...state,
-          count: state.count + 10,
-        };
+          count: 50,
+        }; 
+      
+      case 'Contact_Selected':
+      return {
+        ...state,
+        count: 75,
+      };
+      
+      case 'Cart':
+      return {
+        ...state,
+        count: 100,
+      }; 
 
-      // this is actually only return home for search gifts rn-- change to always make it 0
-      case 'Return_Home':
+      case 'Home':
         return {
           ...state,
-          count: state.count -1,
-        };
+          count: 0,
+        };       
+
+        
       default:
         return state;
     }

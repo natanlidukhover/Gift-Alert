@@ -1,19 +1,7 @@
 import React, { useState } from "react";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  StatusBar,
-  ScrollView
-} from "react-native";
+import {SafeAreaView,StyleSheet,StatusBar,ScrollView} from "react-native";
 
-import RNBounceable from "@freakycoder/react-native-bounceable";
-
-import { useSelector, useDispatch } from 'react-redux';
-import { search_gifts, giftees, third } from '../redux/actions/countAction';
 
 const App = () => {
   let bouncyCheckboxRef: BouncyCheckbox | null = null;
@@ -54,7 +42,7 @@ const Checkbox = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height:600,
     paddingTop: StatusBar.currentHeight,
     backgroundColor:"#663399"
   },

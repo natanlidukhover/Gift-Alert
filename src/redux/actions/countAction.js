@@ -1,24 +1,31 @@
-export const search_gifts = () => {
-    return {
-      type: 'Search_Gifts',
-    };
-  };
-   
-  export const giftees = () => {
-    return {
-      type: 'Giftees',
-    };
-  };
 
-  export const third = () => {
-    return {
-      type: 'Third',
-    };
-  };
-
-    export const return_home = () => {
+    export const contacts = () => {
       return {
-        type: 'Return_Home',
+        type: 'Contacts',
+      };
+    };
+
+    export const contact_selected = () => {
+      return {
+        type: 'Contact_Selected',
+      };
+    };
+
+    export const home = () => {
+      return {
+        type: 'Home',
+      };
+    };
+
+    export const settings = () => {
+      return {
+        type: 'Settings',
+      };
+    };
+
+    export const cart = () => {
+      return {
+        type: 'Cart',
       };
     };
 
