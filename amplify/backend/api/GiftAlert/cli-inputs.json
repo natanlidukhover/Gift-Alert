@@ -3,11 +3,11 @@
   "serviceConfiguration": {
     "apiName": "GiftAlert",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-2e1c48b4-9bc5-4609-85cf-c675e146de2c/amplify/backend/api/GiftAlert/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "keyDescription": "api key description",
-      "expirationTime": 30
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-11-29T04:33:12.894Z",
+      "keyDescription": "api key description"
     },
     "additionalAuthTypes": [
       {

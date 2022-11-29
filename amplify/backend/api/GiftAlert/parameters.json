@@ -1,6 +1,8 @@
 {
   "APIKeyExpirationEpoch": "-1",
   "AppSyncApiName": "GiftAlert",
+  "CreateAPIKey": 0,
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-11-29T04:33:16.514Z"
 }
