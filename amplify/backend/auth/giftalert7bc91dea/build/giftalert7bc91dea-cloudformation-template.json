@@ -160,6 +160,11 @@
             "Required": true
           }
         ],
+        "UserAttributeUpdateSettings": {
+          "AttributesRequireVerificationBeforeUpdate": [
+            "email"
+          ]
+        },
         "UsernameConfiguration": {
           "CaseSensitive": false
         },
@@ -196,6 +201,9 @@
         "ClientName": "giftal7bc91dea_app_clientWeb",
         "RefreshTokenValidity": {
           "Ref": "userpoolClientRefreshTokenValidity"
+        },
+        "TokenValidityUnits": {
+          "RefreshToken": "days"
         }
       },
       "DependsOn": [
@@ -214,6 +222,9 @@
         },
         "RefreshTokenValidity": {
           "Ref": "userpoolClientRefreshTokenValidity"
+        },
+        "TokenValidityUnits": {
+          "RefreshToken": "days"
         }
       },
       "DependsOn": [

@@ -1,4 +1,4 @@
-#if( $ctx.source.deniedField )
+#if( $ctx.stash.deniedField )
   #return($util.toJson(null))
 #end
 #if( $util.isNull($ctx.source.productID) )

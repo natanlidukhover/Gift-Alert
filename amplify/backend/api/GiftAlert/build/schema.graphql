@@ -125,6 +125,65 @@ input ModelIDInput {
   size: ModelSizeInput
 }
 
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
 enum ModelAttributeTypes {
   binary
   binarySet
@@ -241,19 +300,31 @@ type Mutation {
   deleteUserProduct(input: DeleteUserProductInput!, condition: ModelUserProductConditionInput): UserProduct @aws_api_key @aws_iam
 }
 
+input ModelSubscriptionProductFilterInput {
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  description: ModelSubscriptionStringInput
+  image: ModelSubscriptionStringInput
+  url: ModelSubscriptionStringInput
+  price: ModelSubscriptionFloatInput
+  elo: ModelSubscriptionIntInput
+  and: [ModelSubscriptionProductFilterInput]
+  or: [ModelSubscriptionProductFilterInput]
+}
+
 type Subscription {
-  onCreateProduct: Product @aws_subscribe(mutations: ["createProduct"]) @aws_api_key @aws_iam
-  onUpdateProduct: Product @aws_subscribe(mutations: ["updateProduct"]) @aws_api_key @aws_iam
-  onDeleteProduct: Product @aws_subscribe(mutations: ["deleteProduct"]) @aws_api_key @aws_iam
-  onCreateAddress: Address @aws_subscribe(mutations: ["createAddress"]) @aws_api_key @aws_iam
-  onUpdateAddress: Address @aws_subscribe(mutations: ["updateAddress"]) @aws_api_key @aws_iam
-  onDeleteAddress: Address @aws_subscribe(mutations: ["deleteAddress"]) @aws_api_key @aws_iam
-  onCreateUser: User @aws_subscribe(mutations: ["createUser"]) @aws_api_key @aws_iam
-  onUpdateUser: User @aws_subscribe(mutations: ["updateUser"]) @aws_api_key @aws_iam
-  onDeleteUser: User @aws_subscribe(mutations: ["deleteUser"]) @aws_api_key @aws_iam
-  onCreateUserProduct: UserProduct @aws_subscribe(mutations: ["createUserProduct"]) @aws_api_key @aws_iam
-  onUpdateUserProduct: UserProduct @aws_subscribe(mutations: ["updateUserProduct"]) @aws_api_key @aws_iam
-  onDeleteUserProduct: UserProduct @aws_subscribe(mutations: ["deleteUserProduct"]) @aws_api_key @aws_iam
+  onCreateProduct(filter: ModelSubscriptionProductFilterInput): Product @aws_subscribe(mutations: ["createProduct"]) @aws_api_key @aws_iam
+  onUpdateProduct(filter: ModelSubscriptionProductFilterInput): Product @aws_subscribe(mutations: ["updateProduct"]) @aws_api_key @aws_iam
+  onDeleteProduct(filter: ModelSubscriptionProductFilterInput): Product @aws_subscribe(mutations: ["deleteProduct"]) @aws_api_key @aws_iam
+  onCreateAddress(filter: ModelSubscriptionAddressFilterInput): Address @aws_subscribe(mutations: ["createAddress"]) @aws_api_key @aws_iam
+  onUpdateAddress(filter: ModelSubscriptionAddressFilterInput): Address @aws_subscribe(mutations: ["updateAddress"]) @aws_api_key @aws_iam
+  onDeleteAddress(filter: ModelSubscriptionAddressFilterInput): Address @aws_subscribe(mutations: ["deleteAddress"]) @aws_api_key @aws_iam
+  onCreateUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["createUser"]) @aws_api_key @aws_iam
+  onUpdateUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["updateUser"]) @aws_api_key @aws_iam
+  onDeleteUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["deleteUser"]) @aws_api_key @aws_iam
+  onCreateUserProduct(filter: ModelSubscriptionUserProductFilterInput): UserProduct @aws_subscribe(mutations: ["createUserProduct"]) @aws_api_key @aws_iam
+  onUpdateUserProduct(filter: ModelSubscriptionUserProductFilterInput): UserProduct @aws_subscribe(mutations: ["updateUserProduct"]) @aws_api_key @aws_iam
+  onDeleteUserProduct(filter: ModelSubscriptionUserProductFilterInput): UserProduct @aws_subscribe(mutations: ["deleteUserProduct"]) @aws_api_key @aws_iam
 }
 
 type ModelAddressConnection @aws_api_key @aws_iam {
@@ -312,6 +383,18 @@ input UpdateAddressInput {
 input DeleteAddressInput {
   id: ID!
   _version: Int
+}
+
+input ModelSubscriptionAddressFilterInput {
+  id: ModelSubscriptionIDInput
+  address_lines: ModelSubscriptionStringInput
+  city: ModelSubscriptionStringInput
+  state: ModelSubscriptionStringInput
+  country: ModelSubscriptionStringInput
+  postal_code: ModelSubscriptionStringInput
+  user_id: ModelSubscriptionIDInput
+  and: [ModelSubscriptionAddressFilterInput]
+  or: [ModelSubscriptionAddressFilterInput]
 }
 
 type ModelUserConnection @aws_api_key @aws_iam {
@@ -380,6 +463,20 @@ input DeleteUserInput {
   _version: Int
 }
 
+input ModelSubscriptionUserFilterInput {
+  id: ModelSubscriptionIDInput
+  first_name: ModelSubscriptionStringInput
+  last_nam: ModelSubscriptionStringInput
+  email: ModelSubscriptionStringInput
+  phone_number: ModelSubscriptionStringInput
+  birthday: ModelSubscriptionStringInput
+  preferences: ModelSubscriptionStringInput
+  self_entry: ModelSubscriptionBooleanInput
+  contacts: ModelSubscriptionIDInput
+  and: [ModelSubscriptionUserFilterInput]
+  or: [ModelSubscriptionUserFilterInput]
+}
+
 type ModelUserProductConnection @aws_iam @aws_api_key {
   items: [UserProduct]!
   nextToken: String
@@ -420,5 +517,13 @@ input UpdateUserProductInput {
 input DeleteUserProductInput {
   id: ID!
   _version: Int
+}
+
+input ModelSubscriptionUserProductFilterInput {
+  id: ModelSubscriptionIDInput
+  productID: ModelSubscriptionIDInput
+  userID: ModelSubscriptionIDInput
+  and: [ModelSubscriptionUserProductFilterInput]
+  or: [ModelSubscriptionUserProductFilterInput]
 }
 
