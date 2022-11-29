@@ -3,6 +3,7 @@ backend:
   phases:
     build:
       commands:
+        - amplify -v
         - '# Execute Amplify CLI with the helper script'
         - amplifyPush --simple
 frontend:
@@ -12,7 +13,6 @@ frontend:
         - npm ci
         - nvm use 16
         - npm install --silent --global expo-cli
-        - amplify -v
         - |-
           if [ -f yarn.lock ]; then
            yarn
