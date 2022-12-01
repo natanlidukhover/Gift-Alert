@@ -22,7 +22,7 @@ type Address @model @auth(rules: [{allow: public}]) {
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   first_name: String!
-  last_nam: String!
+  last_name: String!
   email: String!
   phone_number: String
   birthday: AWSDate!
