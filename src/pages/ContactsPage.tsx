@@ -18,6 +18,10 @@ export default function ContactsPage() {
     rows.push(<Giftee />);
   }
 
+  // <ScrollView style={styles.scrollView}>
+  // <Text style={styles.headerText}>Contacts</Text>
+  // {rows}
+  // </ScrollView>
   return (
     <View
       style={{
@@ -27,10 +31,12 @@ export default function ContactsPage() {
       }}
     >
       <TopBar></TopBar>
-      <ScrollView style={styles.scrollView}>
-        <Text style={styles.headerText}>Contacts</Text>
-        {rows}
-      </ScrollView>
+      <View style={styles.scrollViewParent}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <Text style={styles.headerText}>Contacts</Text>
+          {rows}
+        </ScrollView>
+      </View>
       <BottomNav></BottomNav>
     </View>
   );
@@ -57,7 +63,7 @@ const Giftee = () => {
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: "black",
-    height: 500,
+    flex: 1,
   },
   text: {
     fontSize: 42,
@@ -76,8 +82,6 @@ const styles = StyleSheet.create({
   },
 
   headerText: {
-    marginTop: 20,
-    marginBottom: 20,
     textAlign: "center",
     color: "#FFFFFF",
     fontSize: 48,
@@ -88,4 +92,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "FFFFFF",
   },
+  scrollViewParent: {
+    flex: 4
+  }
 });
