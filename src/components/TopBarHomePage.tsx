@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { cart } from "../redux/actions/countAction";
+import { cart } from "../redux/actions/pageIdAction";
 
 export default function TopBar() {
   const dispatch = useDispatch();

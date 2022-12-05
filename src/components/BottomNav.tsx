@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { contacts, home, settings } from "../redux/actions/countAction";
+import { contacts, home, settings } from "../redux/actions/pageIdAction";
 
 export default function BottomNav() {
   const dispatch = useDispatch();
 
-  const count = useSelector((store) => store.count.count);
+  const pageId = useSelector((store) => store.count.pageId);
 
   const handleContacts = () => {
     dispatch(contacts());

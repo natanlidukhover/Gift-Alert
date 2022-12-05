@@ -11,21 +11,21 @@ import ContactSelectedPage from "./pages/ContactSelectedPage";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const count = useSelector((store) => store.count.count);
+  const pageId = useSelector((store) => store.count.pageId);
 
-  if (count == 25) {
+  if (pageId == 25) {
     return <Contacts />;
   }
 
-  if (count == 50) {
+  if (pageId == 50) {
     return <SettingsPage />;
   }
 
-  if (count == 75) {
+  if (pageId == 75) {
     return <ContactSelectedPage />;
   }
 
-  if (count == 100) {
+  if (pageId == 100) {
     return <CartPage />;
   }
 

@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from "redux";
-import CountReducer from "./reducers/countReducer";
+import pageIdReducer from "./reducers/pageIdReducer";
 
 const rootReducer = combineReducers({
-  count: CountReducer,
+  count: pageIdReducer,
 });
 
 export const store = createStore(rootReducer);

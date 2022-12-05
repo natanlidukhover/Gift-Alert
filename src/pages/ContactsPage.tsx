@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { contact_selected } from "../redux/actions/countAction";
+import { contact_selected } from "../redux/actions/pageIdAction";
 import BottomNav from "../components/BottomNav";
 import TopBar from "../components/TopBarHomePage";
 
@@ -18,10 +18,6 @@ export default function ContactsPage() {
     rows.push(<Giftee />);
   }
 
-  // <ScrollView style={styles.scrollView}>
-  // <Text style={styles.headerText}>Contacts</Text>
-  // {rows}
-  // </ScrollView>
   return (
     <View
       style={{
@@ -45,7 +41,7 @@ export default function ContactsPage() {
 const Giftee = () => {
   const dispatch = useDispatch();
 
-  const count = useSelector((store) => store.count.count);
+  const pageId = useSelector((store) => store.count.pageId);
 
   const handleContactSelected = () => {
     dispatch(contact_selected());
